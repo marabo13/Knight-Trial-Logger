@@ -2,183 +2,182 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Knight Trial Log</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<title>Jedi Trial Log</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 <style>
-    body {
-        margin: 0;
-        font-family: 'Inter', sans-serif;
-        background: linear-gradient(135deg, #0f0f0f, #1b1b1b);
-        color: white;
-    }
 
-    header {
-        text-align: center;
-        padding: 30px;
-        font-family: 'Cinzel', serif;
-        font-size: 32px;
-        background: linear-gradient(90deg, #8b0000, #b22222);
-        letter-spacing: 2px;
-    }
+body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(circle at top, #0a0f1c, #000);
+    color: #00eaff;
+}
 
-    .container {
-        max-width: 900px;
-        margin: 40px auto;
-        padding: 20px;
-    }
+header {
+    text-align: center;
+    padding: 30px;
+    font-size: 32px;
+    letter-spacing: 3px;
+    background: black;
+    border-bottom: 2px solid #00eaff;
+    text-shadow: 0 0 15px #00eaff;
+}
 
-    form {
-        background: #1e1e1e;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 0 15px rgba(178,34,34,0.4);
-        margin-bottom: 30px;
-    }
+.container {
+    max-width: 950px;
+    margin: 40px auto;
+    padding: 20px;
+}
 
-    input, select, button {
-        width: 100%;
-        padding: 12px;
-        margin: 10px 0;
-        border-radius: 8px;
-        border: none;
-        font-size: 14px;
-    }
+form {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid #00eaff;
+    box-shadow: 0 0 25px #00eaff;
+    margin-bottom: 30px;
+}
 
-    input, select {
-        background: #2a2a2a;
-        color: white;
-    }
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #00eaff;
+    background: black;
+    color: #00eaff;
+    font-family: 'Orbitron', sans-serif;
+}
 
-    button {
-        background: #b22222;
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.3s;
-    }
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    font-weight: bold;
+}
 
-    button:hover {
-        background: #8b0000;
-        transform: scale(1.03);
-    }
+.addBtn {
+    background: #00eaff;
+    color: black;
+    box-shadow: 0 0 15px #00eaff;
+}
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        background: #1e1e1e;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 0 15px rgba(178,34,34,0.3);
-    }
+.addBtn:hover {
+    background: #00bcd4;
+}
 
-    th, td {
-        padding: 12px;
-        text-align: center;
-    }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(0, 0, 0, 0.85);
+    border: 1px solid #00eaff;
+    box-shadow: 0 0 25px #00eaff;
+}
 
-    th {
-        background: #2a2a2a;
-        font-weight: 600;
-    }
+th, td {
+    padding: 14px;
+    text-align: center;
+    border-bottom: 1px solid #003b44;
+}
 
-    tr:nth-child(even) {
-        background: #252525;
-    }
+th {
+    background: black;
+    text-shadow: 0 0 10px #00eaff;
+}
 
-    .passed {
-        color: #4CAF50;
-        font-weight: bold;
-    }
+tr:hover {
+    background: rgba(0, 234, 255, 0.1);
+}
 
-    .failed {
-        color: #ff9800;
-        font-weight: bold;
-    }
+.passed {
+    color: #00ff88;
+    text-shadow: 0 0 10px #00ff88;
+}
 
-    .cheated {
-        color: #f44336;
-        font-weight: bold;
-    }
+.failed {
+    color: #ffcc00;
+    text-shadow: 0 0 10px #ffcc00;
+}
 
-    a {
-        color: #4fc3f7;
-        text-decoration: none;
-    }
+.cheated {
+    color: #ff0033;
+    text-shadow: 0 0 12px #ff0033;
+}
 
-    a:hover {
-        text-decoration: underline;
-    }
+.copyBtn {
+    background: #111;
+    border: 1px solid #00eaff;
+    color: #00eaff;
+    box-shadow: 0 0 10px #00eaff;
+}
 
-    footer {
-        text-align: center;
-        padding: 20px;
-        font-size: 12px;
-        opacity: 0.6;
-    }
+.copyBtn:hover {
+    background: #00eaff;
+    color: black;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    opacity: 0.6;
+    font-size: 12px;
+}
+
 </style>
 </head>
 <body>
 
-<header>⚔ Knight Trial Log ⚔</header>
+<header>🌌 JEDI TRIAL LOG 🌌</header>
 
 <div class="container">
 
 <form id="trialForm">
-    <input type="text" id="host" placeholder="Host" required>
-    <input type="text" id="attendee" placeholder="Attendee" required>
+    <input type="text" id="host" placeholder="Jedi Master (Host)" required>
+    <input type="text" id="attendee" placeholder="Padawan (Attendee)" required>
 
     <select id="result" required>
-        <option value="">Select Result</option>
+        <option value="">Select Outcome</option>
         <option value="Passed">Passed</option>
         <option value="Failed">Failed</option>
         <option value="Cheated">Cheated</option>
     </select>
 
-    <input type="text" id="document" placeholder="Document Link" required>
+    <input type="text" id="document" placeholder="Holocron Document Link" required>
 
-    <button type="submit">Add Trial</button>
+    <button type="submit" class="addBtn">Record Trial</button>
 </form>
 
 <table>
-    <thead>
-        <tr>
-            <th>Host</th>
-            <th>Attendee</th>
-            <th>Result</th>
-            <th>Date</th>
-            <th>Ping</th>
-            <th>Document</th>
-        </tr>
-    </thead>
-    <tbody id="logTable"></tbody>
+<thead>
+<tr>
+    <th>Master</th>
+    <th>Padawan</th>
+    <th>Outcome</th>
+    <th>Date</th>
+    <th>Ping</th>
+    <th>Copy</th>
+</tr>
+</thead>
+<tbody id="logTable"></tbody>
 </table>
 
 </div>
 
 <footer>
-    Ping ID: &lt;@&1468821245972713585&gt;
+Ping ID: &lt;@&1468821245972713585&gt;
 </footer>
 
 <script>
 const form = document.getElementById("trialForm");
 const table = document.getElementById("logTable");
-
 const PING_ID = "<@&1468821245972713585>";
 
 function getTodayDate() {
-    const today = new Date();
-    return today.toISOString().split("T")[0];
-}
-
-function loadLogs() {
-    const logs = JSON.parse(localStorage.getItem("trialLogs")) || [];
-    logs.forEach(addRow);
-}
-
-function saveLog(log) {
-    const logs = JSON.parse(localStorage.getItem("trialLogs")) || [];
-    logs.push(log);
-    localStorage.setItem("trialLogs", JSON.stringify(logs));
+    return new Date().toISOString().split("T")[0];
 }
 
 function addRow(log) {
@@ -194,14 +193,31 @@ function addRow(log) {
         resultText += " (8 day cd)";
     }
 
+    const discordMessage =
+`🌌 **JEDI TRIAL LOG** 🌌
+Master: ${log.host}
+Padawan: ${log.attendee}
+Outcome: ${resultText}
+Date: ${log.date}
+Ping: ${PING_ID}
+Holocron: ${log.document}`;
+
     row.innerHTML = `
         <td>${log.host}</td>
         <td>${log.attendee}</td>
         <td class="${resultClass}">${resultText}</td>
         <td>${log.date}</td>
         <td>${PING_ID}</td>
-        <td><a href="${log.document}" target="_blank">View</a></td>
+        <td><button class="copyBtn">Copy</button></td>
     `;
+
+    row.querySelector(".copyBtn").addEventListener("click", () => {
+        navigator.clipboard.writeText(discordMessage);
+        row.querySelector(".copyBtn").innerText = "Copied!";
+        setTimeout(() => {
+            row.querySelector(".copyBtn").innerText = "Copy";
+        }, 1500);
+    });
 
     table.appendChild(row);
 }
@@ -218,11 +234,8 @@ form.addEventListener("submit", function(e) {
     };
 
     addRow(log);
-    saveLog(log);
     form.reset();
 });
-
-loadLogs();
 </script>
 
 </body>
