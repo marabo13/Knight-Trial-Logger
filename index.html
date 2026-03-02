@@ -3,22 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Knight Trial Log</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #0f0f0f, #1b1b1b);
-    color: white;
+    background: radial-gradient(circle at top, #0b1a2f, #000814);
+    color: #e0f7ff;
 }
 
 header {
     text-align: center;
-    padding: 30px;
-    font-family: 'Cinzel', serif;
-    font-size: 32px;
-    background: linear-gradient(90deg, #8b0000, #b22222);
-    letter-spacing: 2px;
+    padding: 40px 20px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 42px;
+    letter-spacing: 3px;
+    color: #00e5ff;
+    text-shadow: 0 0 20px #00e5ff, 0 0 40px #00bcd4;
 }
 
 .container {
@@ -28,10 +30,11 @@ header {
 }
 
 form {
-    background: #1e1e1e;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(178,34,34,0.4);
+    background: rgba(0, 229, 255, 0.05);
+    border: 1px solid rgba(0,229,255,0.3);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0,229,255,0.2);
     margin-bottom: 30px;
 }
 
@@ -41,28 +44,34 @@ input, select, button {
     margin: 10px 0;
     border-radius: 8px;
     border: none;
+    font-size: 14px;
 }
 
 input, select {
-    background: #2a2a2a;
-    color: white;
+    background: #001d3d;
+    color: #e0f7ff;
+    border: 1px solid rgba(0,229,255,0.3);
 }
 
 button {
-    background: crimson;
-    color: white;
+    background: #00e5ff;
+    color: #000814;
     font-weight: bold;
     cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 15px #00e5ff;
 }
 
 button:hover {
-    background: darkred;
+    transform: scale(1.05);
+    box-shadow: 0 0 30px #00e5ff;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    background: #1e1e1e;
+    background: rgba(0, 229, 255, 0.05);
+    border: 1px solid rgba(0,229,255,0.3);
     border-radius: 12px;
     overflow: hidden;
 }
@@ -73,29 +82,47 @@ th, td {
 }
 
 th {
-    background: #2a2a2a;
+    background: rgba(0,229,255,0.1);
+    font-family: 'Orbitron', sans-serif;
 }
 
 tr:nth-child(even) {
-    background: #252525;
+    background: rgba(0,229,255,0.03);
 }
 
-.passed { color: #4CAF50; font-weight: bold; }
-.failed { color: orange; font-weight: bold; }
-.cheated { color: red; font-weight: bold; }
+.passed {
+    color: #00ff88;
+    text-shadow: 0 0 8px #00ff88;
+    font-weight: bold;
+}
+
+.failed {
+    color: #ffcc00;
+    text-shadow: 0 0 8px #ffcc00;
+    font-weight: bold;
+}
+
+.cheated {
+    color: #ff2a2a;
+    text-shadow: 0 0 10px #ff2a2a;
+    font-weight: bold;
+}
 
 .copyBtn {
-    background: #3f51b5;
+    background: transparent;
+    border: 1px solid #00e5ff;
+    color: #00e5ff;
 }
 
 .copyBtn:hover {
-    background: #283593;
+    background: #00e5ff;
+    color: #000814;
 }
 </style>
 </head>
 <body>
 
-<header>⚔ Knight Trial Log ⚔</header>
+<header>🌌 Knight Trial Log</header>
 
 <div class="container">
 
@@ -112,7 +139,7 @@ tr:nth-child(even) {
 
     <input type="url" id="document" placeholder="Assessment Link (https://...)" required>
 
-    <button type="submit">Add Trial</button>
+    <button type="submit">Record Trial</button>
 </form>
 
 <table>
@@ -140,33 +167,42 @@ function getTodayDate() {
     return new Date().toISOString().split("T")[0];
 }
 
-function addRow(log) {
-    const row = document.createElement("tr");
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
 
+    const hostValue = document.getElementById("host").value;
+    const attendeeValue = document.getElementById("attendee").value;
+    const resultValue = document.getElementById("result").value;
+    const documentValue = document.getElementById("document").value;
+
+    let resultText = resultValue;
     let resultClass = "";
-    let resultText = log.result;
 
-    if (log.result === "Passed") resultClass = "passed";
-    if (log.result === "Failed") resultClass = "failed";
-    if (log.result === "Cheated") {
+    if (resultValue === "Passed") resultClass = "passed";
+    if (resultValue === "Failed") resultClass = "failed";
+    if (resultValue === "Cheated") {
         resultClass = "cheated";
         resultText += " (8 day cd)";
     }
 
+    const dateToday = getTodayDate();
+
     const discordMessage =
-`⚔ Knight Trial Log ⚔
-Host: ${log.host}
-Attendee: ${log.attendee}
+`🌌 Knight Trial Log
+Host: ${hostValue}
+Attendee: ${attendeeValue}
 Result: ${resultText}
-Date: ${log.date}
+Date: ${dateToday}
 Ping: ${PING_ID}
-Assessment link: ${log.document}`;
+Assessment link: ${documentValue}`;
+
+    const row = document.createElement("tr");
 
     row.innerHTML = `
-        <td>${log.host}</td>
-        <td>${log.attendee}</td>
+        <td>${hostValue}</td>
+        <td>${attendeeValue}</td>
         <td class="${resultClass}">${resultText}</td>
-        <td>${log.date}</td>
+        <td>${dateToday}</td>
         <td>${PING_ID}</td>
         <td><button class="copyBtn">Copy</button></td>
     `;
@@ -180,20 +216,6 @@ Assessment link: ${log.document}`;
     });
 
     table.appendChild(row);
-}
-
-form.addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const log = {
-        host: host.value,
-        attendee: attendee.value,
-        result: result.value,
-        date: getTodayDate(),
-        document: document.value
-    };
-
-    addRow(log);
     form.reset();
 });
 </script>
