@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Knight Trial Log</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: white;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 20px;
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        input, button {
+            padding: 8px;
+            margin: 5px 0;
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            background: crimson;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: darkred;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1e1e1e;
+        }
+
+        th, td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background: #222;
+        }
+
+        .cheated {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>⚔ Knight Trial Log ⚔</h1>
+
+<form id="trialForm">
+    <input type="text" id="host" placeholder="Host" required>
+    <input type="text" id="attendee" placeholder="Attendee" required>
+    <input type="text" id="result" placeholder="Result (if cheated with AI = 8 day cd)" required>
+    <input type="date" id="date" required>
+    <input type="text" id="ping" placeholder="Ping (ms)" required>
+    <input type="text" id="document" placeholder="Document Link" required>
+    <button type="submit">Add Trial</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Host</th>
+            <th>Attendee</th>
+            <th>Result</th>
+            <th>Date</th>
+            <th>Ping</th>
+            <th>Document</th>
+        </tr>
+    </thead>
+    <tbody id="logTable"></tbody>
+</table>
+
+<script>
+    const form = document.getElementById("trialForm");
+    const table = document.getElementById("logTable");
+
+    function loadLogs() {
+        const logs = JSON.parse(localStorage.getItem("trialLogs")) || [];
+        logs.forEach(addRow);
+    }
+
+    function saveLog(log) {
+        const logs = JSON.parse(localStorage.getItem("trialLogs")) || [];
+        logs.push(log);
+        localStorage.setItem("trialLogs", JSON.stringify(logs));
+    }
+
+    function addRow(log) {
+        const row = document.createElement("tr");
+
+        let resultText = log.result;
+        let cheatedClass = "";
+
+        if (log.result.toLowerCase().includes("ai")) {
+            resultText += " (8 day cd)";
+            cheatedClass = "cheated";
+        }
+
+        row.innerHTML = `
+            <td>${log.host}</td>
+            <td>${log.attendee}</td>
+            <td class="${cheatedClass}">${resultText}</td>
+            <td>${log.date}</td>
+            <td>${log.ping}</td>
+            <td><a href="${log.document}" target="_blank" style="color:cyan;">View</a></td>
+        `;
+
+        table.appendChild(row);
+    }
+
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const log = {
+            host: host.value,
+            attendee: attendee.value,
+            result: result.value,
+            date: date.value,
+            ping: ping.value,
+            document: document.value
+        };
+
+        addRow(log);
+        saveLog(log);
+        form.reset();
+    });
+
+    loadLogs();
+</script>
+
+</body>
+</html>
