@@ -24,7 +24,7 @@ header {
 }
 
 .container {
-    max-width: 900px;
+    max-width: 950px;
     margin: 40px auto;
     padding: 20px;
 }
@@ -130,6 +130,24 @@ tr:nth-child(even) {
     <input type="text" id="host" placeholder="Host" required>
     <input type="text" id="attendee" placeholder="Attendee" required>
 
+    <select id="master" required>
+        <option value="">Select Master</option>
+        <option value="veils_s">veils_s</option>
+        <option value="StormThyGoat">StormThyGoat</option>
+        <option value="nyiko46">nyiko46</option>
+        <option value="axronomore">axronomore</option>
+        <option value="jaketstone34">jaketstone34</option>
+        <option value="marabo13">marabo13</option>
+        <option value="Insettopallena">Insettopallena</option>
+        <option value="majin_jedi">majin_jedi</option>
+        <option value="6Talker9">6Talker9</option>
+        <option value="YepImDivine">YepImDivine</option>
+        <option value="SpanishBigMuscle">SpanishBigMuscle</option>
+        <option value="Demxcles">Demxcles</option>
+        <option value="ValoBelmont">ValoBelmont</option>
+        <option value="Pakaold1">Pakaold1</option>
+    </select>
+
     <select id="result" required>
         <option value="">Select Result</option>
         <option value="Passed">Passed</option>
@@ -147,6 +165,7 @@ tr:nth-child(even) {
 <tr>
     <th>Host</th>
     <th>Attendee</th>
+    <th>Master</th>
     <th>Result</th>
     <th>Date</th>
     <th>Ping</th>
@@ -172,6 +191,7 @@ form.addEventListener("submit", function(e) {
 
     const hostValue = document.getElementById("host").value;
     const attendeeValue = document.getElementById("attendee").value;
+    const masterValue = document.getElementById("master").value;
     const resultValue = document.getElementById("result").value;
     const documentValue = document.getElementById("document").value;
 
@@ -191,6 +211,7 @@ form.addEventListener("submit", function(e) {
 `🌌 Knight Trial Log
 Host: ${hostValue}
 Attendee: ${attendeeValue}
+Master: ${masterValue}
 Result: ${resultText}
 Date: ${dateToday}
 Ping: ${PING_ID}
@@ -201,6 +222,7 @@ Assessment link: ${documentValue}`;
     row.innerHTML = `
         <td>${hostValue}</td>
         <td>${attendeeValue}</td>
+        <td>${masterValue}</td>
         <td class="${resultClass}">${resultText}</td>
         <td>${dateToday}</td>
         <td>${PING_ID}</td>
