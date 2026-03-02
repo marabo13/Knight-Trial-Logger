@@ -2,26 +2,23 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Jedi Trial Log</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
+<title>Knight Trial Log</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    background: radial-gradient(circle at top, #0d1b2a, #000814);
-    color: #e0f7ff;
+    background: linear-gradient(135deg, #0f0f0f, #1b1b1b);
+    color: white;
 }
 
 header {
     text-align: center;
     padding: 30px;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Cinzel', serif;
     font-size: 32px;
-    letter-spacing: 3px;
-    color: #00e5ff;
-    text-shadow: 0 0 15px #00e5ff;
-    border-bottom: 1px solid rgba(0,229,255,0.3);
+    background: linear-gradient(90deg, #8b0000, #b22222);
+    letter-spacing: 2px;
 }
 
 .container {
@@ -31,13 +28,11 @@ header {
 }
 
 form {
-    background: rgba(0, 229, 255, 0.05);
-    border: 1px solid rgba(0,229,255,0.3);
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 0 25px rgba(0,229,255,0.2);
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(178,34,34,0.4);
     margin-bottom: 30px;
-    backdrop-filter: blur(8px);
 }
 
 input, select, button {
@@ -46,34 +41,28 @@ input, select, button {
     margin: 10px 0;
     border-radius: 8px;
     border: none;
-    font-size: 14px;
 }
 
 input, select {
-    background: #001d3d;
-    color: #e0f7ff;
-    border: 1px solid rgba(0,229,255,0.2);
+    background: #2a2a2a;
+    color: white;
 }
 
 button {
-    background: #00e5ff;
-    color: #000814;
+    background: crimson;
+    color: white;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0 0 15px #00e5ff;
 }
 
 button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px #00e5ff;
+    background: darkred;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    background: rgba(0, 229, 255, 0.05);
-    border: 1px solid rgba(0,229,255,0.3);
+    background: #1e1e1e;
     border-radius: 12px;
     overflow: hidden;
 }
@@ -84,90 +73,63 @@ th, td {
 }
 
 th {
-    background: rgba(0,229,255,0.1);
-    font-family: 'Orbitron', sans-serif;
+    background: #2a2a2a;
 }
 
 tr:nth-child(even) {
-    background: rgba(0,229,255,0.03);
+    background: #252525;
 }
 
-.passed {
-    color: #00ff88;
-    text-shadow: 0 0 8px #00ff88;
-    font-weight: bold;
-}
-
-.failed {
-    color: #ffcc00;
-    text-shadow: 0 0 8px #ffcc00;
-    font-weight: bold;
-}
-
-.cheated {
-    color: #ff2a2a;
-    text-shadow: 0 0 10px #ff2a2a;
-    font-weight: bold;
-}
+.passed { color: #4CAF50; font-weight: bold; }
+.failed { color: orange; font-weight: bold; }
+.cheated { color: red; font-weight: bold; }
 
 .copyBtn {
-    background: transparent;
-    border: 1px solid #00e5ff;
-    color: #00e5ff;
+    background: #3f51b5;
 }
 
 .copyBtn:hover {
-    background: #00e5ff;
-    color: #000814;
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    opacity: 0.5;
+    background: #283593;
 }
 </style>
 </head>
 <body>
 
-<header>✦ JEDI COUNCIL TRIAL LOG ✦</header>
+<header>⚔ Knight Trial Log ⚔</header>
 
 <div class="container">
 
 <form id="trialForm">
-    <input type="text" id="host" placeholder="Jedi Master (Host)" required>
-    <input type="text" id="attendee" placeholder="Padawan (Attendee)" required>
+    <input type="text" id="host" placeholder="Host" required>
+    <input type="text" id="attendee" placeholder="Attendee" required>
 
     <select id="result" required>
-        <option value="">Select Trial Result</option>
+        <option value="">Select Result</option>
         <option value="Passed">Passed</option>
         <option value="Failed">Failed</option>
         <option value="Cheated">Cheated</option>
     </select>
 
-    <input type="text" id="document" placeholder="Holocron Record (Document Link)" required>
-    <button type="submit">Record Trial</button>
+    <input type="url" id="document" placeholder="Assessment Link (https://...)" required>
+
+    <button type="submit">Add Trial</button>
 </form>
 
 <table>
 <thead>
 <tr>
-    <th>Master</th>
-    <th>Padawan</th>
+    <th>Host</th>
+    <th>Attendee</th>
     <th>Result</th>
     <th>Date</th>
     <th>Ping</th>
-    <th>Transmit</th>
+    <th>Copy</th>
 </tr>
 </thead>
 <tbody id="logTable"></tbody>
 </table>
 
 </div>
-
-<footer>
-    Jedi Council Ping: &lt;@&1468821245972713585&gt;
-</footer>
 
 <script>
 const form = document.getElementById("trialForm");
@@ -192,13 +154,13 @@ function addRow(log) {
     }
 
     const discordMessage =
-`✦ Jedi Council Trial Log ✦
-Master: ${log.host}
-Padawan: ${log.attendee}
+`⚔ Knight Trial Log ⚔
+Host: ${log.host}
+Attendee: ${log.attendee}
 Result: ${resultText}
 Date: ${log.date}
 Ping: ${PING_ID}
-Holocron Record: ${log.document}`;
+Assessment link: ${log.document}`;
 
     row.innerHTML = `
         <td>${log.host}</td>
@@ -206,14 +168,14 @@ Holocron Record: ${log.document}`;
         <td class="${resultClass}">${resultText}</td>
         <td>${log.date}</td>
         <td>${PING_ID}</td>
-        <td><button class="copyBtn">Transmit</button></td>
+        <td><button class="copyBtn">Copy</button></td>
     `;
 
     row.querySelector(".copyBtn").addEventListener("click", () => {
         navigator.clipboard.writeText(discordMessage);
-        row.querySelector(".copyBtn").innerText = "Transmitted ✓";
+        row.querySelector(".copyBtn").innerText = "Copied ✓";
         setTimeout(() => {
-            row.querySelector(".copyBtn").innerText = "Transmit";
+            row.querySelector(".copyBtn").innerText = "Copy";
         }, 2000);
     });
 
