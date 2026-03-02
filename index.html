@@ -3,135 +3,134 @@
 <head>
 <meta charset="UTF-8">
 <title>Jedi Trial Log</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
-<style>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
+<style>
 body {
     margin: 0;
-    font-family: 'Orbitron', sans-serif;
-    background: radial-gradient(circle at top, #0a0f1c, #000);
-    color: #00eaff;
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at top, #0d1b2a, #000814);
+    color: #e0f7ff;
 }
 
 header {
     text-align: center;
     padding: 30px;
+    font-family: 'Orbitron', sans-serif;
     font-size: 32px;
     letter-spacing: 3px;
-    background: black;
-    border-bottom: 2px solid #00eaff;
-    text-shadow: 0 0 15px #00eaff;
+    color: #00e5ff;
+    text-shadow: 0 0 15px #00e5ff;
+    border-bottom: 1px solid rgba(0,229,255,0.3);
 }
 
 .container {
-    max-width: 950px;
+    max-width: 900px;
     margin: 40px auto;
     padding: 20px;
 }
 
 form {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 20px;
+    background: rgba(0, 229, 255, 0.05);
+    border: 1px solid rgba(0,229,255,0.3);
+    padding: 25px;
     border-radius: 15px;
-    border: 1px solid #00eaff;
-    box-shadow: 0 0 25px #00eaff;
+    box-shadow: 0 0 25px rgba(0,229,255,0.2);
     margin-bottom: 30px;
+    backdrop-filter: blur(8px);
 }
 
-input, select {
+input, select, button {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
     border-radius: 8px;
-    border: 1px solid #00eaff;
-    background: black;
-    color: #00eaff;
-    font-family: 'Orbitron', sans-serif;
+    border: none;
+    font-size: 14px;
+}
+
+input, select {
+    background: #001d3d;
+    color: #e0f7ff;
+    border: 1px solid rgba(0,229,255,0.2);
 }
 
 button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    border-radius: 8px;
-    border: none;
-    font-family: 'Orbitron', sans-serif;
-    cursor: pointer;
+    background: #00e5ff;
+    color: #000814;
     font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 15px #00e5ff;
 }
 
-.addBtn {
-    background: #00eaff;
-    color: black;
-    box-shadow: 0 0 15px #00eaff;
-}
-
-.addBtn:hover {
-    background: #00bcd4;
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #00e5ff;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    background: rgba(0, 0, 0, 0.85);
-    border: 1px solid #00eaff;
-    box-shadow: 0 0 25px #00eaff;
+    background: rgba(0, 229, 255, 0.05);
+    border: 1px solid rgba(0,229,255,0.3);
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 th, td {
-    padding: 14px;
+    padding: 12px;
     text-align: center;
-    border-bottom: 1px solid #003b44;
 }
 
 th {
-    background: black;
-    text-shadow: 0 0 10px #00eaff;
+    background: rgba(0,229,255,0.1);
+    font-family: 'Orbitron', sans-serif;
 }
 
-tr:hover {
-    background: rgba(0, 234, 255, 0.1);
+tr:nth-child(even) {
+    background: rgba(0,229,255,0.03);
 }
 
 .passed {
     color: #00ff88;
-    text-shadow: 0 0 10px #00ff88;
+    text-shadow: 0 0 8px #00ff88;
+    font-weight: bold;
 }
 
 .failed {
     color: #ffcc00;
-    text-shadow: 0 0 10px #ffcc00;
+    text-shadow: 0 0 8px #ffcc00;
+    font-weight: bold;
 }
 
 .cheated {
-    color: #ff0033;
-    text-shadow: 0 0 12px #ff0033;
+    color: #ff2a2a;
+    text-shadow: 0 0 10px #ff2a2a;
+    font-weight: bold;
 }
 
 .copyBtn {
-    background: #111;
-    border: 1px solid #00eaff;
-    color: #00eaff;
-    box-shadow: 0 0 10px #00eaff;
+    background: transparent;
+    border: 1px solid #00e5ff;
+    color: #00e5ff;
 }
 
 .copyBtn:hover {
-    background: #00eaff;
-    color: black;
+    background: #00e5ff;
+    color: #000814;
 }
 
 footer {
     text-align: center;
     padding: 20px;
-    opacity: 0.6;
-    font-size: 12px;
+    opacity: 0.5;
 }
-
 </style>
 </head>
 <body>
 
-<header>🌌 JEDI TRIAL LOG 🌌</header>
+<header>✦ JEDI COUNCIL TRIAL LOG ✦</header>
 
 <div class="container">
 
@@ -140,15 +139,14 @@ footer {
     <input type="text" id="attendee" placeholder="Padawan (Attendee)" required>
 
     <select id="result" required>
-        <option value="">Select Outcome</option>
+        <option value="">Select Trial Result</option>
         <option value="Passed">Passed</option>
         <option value="Failed">Failed</option>
         <option value="Cheated">Cheated</option>
     </select>
 
-    <input type="text" id="document" placeholder="Holocron Document Link" required>
-
-    <button type="submit" class="addBtn">Record Trial</button>
+    <input type="text" id="document" placeholder="Holocron Record (Document Link)" required>
+    <button type="submit">Record Trial</button>
 </form>
 
 <table>
@@ -156,10 +154,10 @@ footer {
 <tr>
     <th>Master</th>
     <th>Padawan</th>
-    <th>Outcome</th>
+    <th>Result</th>
     <th>Date</th>
     <th>Ping</th>
-    <th>Copy</th>
+    <th>Transmit</th>
 </tr>
 </thead>
 <tbody id="logTable"></tbody>
@@ -168,7 +166,7 @@ footer {
 </div>
 
 <footer>
-Ping ID: &lt;@&1468821245972713585&gt;
+    Jedi Council Ping: &lt;@&1468821245972713585&gt;
 </footer>
 
 <script>
@@ -194,13 +192,13 @@ function addRow(log) {
     }
 
     const discordMessage =
-`🌌 **JEDI TRIAL LOG** 🌌
+`✦ Jedi Council Trial Log ✦
 Master: ${log.host}
 Padawan: ${log.attendee}
-Outcome: ${resultText}
+Result: ${resultText}
 Date: ${log.date}
 Ping: ${PING_ID}
-Holocron: ${log.document}`;
+Holocron Record: ${log.document}`;
 
     row.innerHTML = `
         <td>${log.host}</td>
@@ -208,15 +206,15 @@ Holocron: ${log.document}`;
         <td class="${resultClass}">${resultText}</td>
         <td>${log.date}</td>
         <td>${PING_ID}</td>
-        <td><button class="copyBtn">Copy</button></td>
+        <td><button class="copyBtn">Transmit</button></td>
     `;
 
     row.querySelector(".copyBtn").addEventListener("click", () => {
         navigator.clipboard.writeText(discordMessage);
-        row.querySelector(".copyBtn").innerText = "Copied!";
+        row.querySelector(".copyBtn").innerText = "Transmitted ✓";
         setTimeout(() => {
-            row.querySelector(".copyBtn").innerText = "Copy";
-        }, 1500);
+            row.querySelector(".copyBtn").innerText = "Transmit";
+        }, 2000);
     });
 
     table.appendChild(row);
